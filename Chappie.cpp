@@ -40,6 +40,9 @@ void CHAPPIE::init()
     Tp.init(&Wire);
     Lcd.printf("Tp init success!\n");
 
+    /* Init RTC */
+    Rtc.begin();
+
 
     FastLED.clear(true);
 }

@@ -11,6 +11,7 @@
 #pragma once
 #include "EmmaBSP/Emma.h"
 #include "CTP/ChappieCTP.hpp"
+#include "RTC/I2C_BM8563.h"
 
 
 class CHAPPIE : public EMMA {
@@ -27,10 +28,13 @@ class CHAPPIE : public EMMA {
         /* Touch pad driver */
         CTP Tp;
 
+        /* RTC driver */
+        I2C_BM8563 Rtc = I2C_BM8563(I2C_BM8563_DEFAULT_ADDRESS, Wire);
+
+
         void init();
 
         
-
 };
 
 
