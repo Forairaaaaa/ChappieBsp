@@ -35,6 +35,7 @@ void CHAPPIE::init()
 
     /* Init I2C */
     Wire.begin(5, 4);
+    Wire.setClock(400000);
 
     /* Init touchpad */
     Lcd.printf("%s", Cowsay("Pls touch screen to wakeup Tp").c_str());
@@ -44,8 +45,8 @@ void CHAPPIE::init()
     /* Init RTC */
     Rtc.begin();
 
-
-
+    /* Init IMU */
+    IMU.init();
 
 
     FastLED.clear(true);

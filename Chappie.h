@@ -26,10 +26,10 @@ class CHAPPIE : public EMMA {
  \___)_)(_|_/\_(__) (__) (__|____)
 )";
 
-        /* Touch pad driver */
-        CTP Tp;
+        ChappieCTP Tp;
 
-        /* RTC driver */
+        ChappieIMU IMU;
+
         I2C_BM8563 Rtc = I2C_BM8563(I2C_BM8563_DEFAULT_ADDRESS, Wire);
 
 

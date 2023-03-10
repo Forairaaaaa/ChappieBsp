@@ -35,7 +35,7 @@
 // #define CTP_Y_OFFSET            -20
 
 
-class CTP {
+class ChappieCTP {
     private:
         int _x_pos;
         int _y_pos;
