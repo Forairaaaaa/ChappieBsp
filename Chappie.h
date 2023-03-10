@@ -11,6 +11,7 @@
 #pragma once
 #include "EmmaBSP/Emma.h"
 #include "CTP/ChappieCTP.hpp"
+#include "IMU/ChappieIMU.hpp"
 #include "Utility/BM8563/I2C_BM8563.h"
 
 
