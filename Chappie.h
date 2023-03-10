@@ -16,7 +16,6 @@
 class CHAPPIE : public EMMA {
     private:
         
-
     public:
         const std::string Logo = R"(
   ___ _  _  __  ____ ____ __ ____ 
@@ -28,10 +27,6 @@ class CHAPPIE : public EMMA {
         /* Touch pad driver */
         CTP Tp;
 
-        /**
-         * @brief Init
-         * 
-         */
         void init();
 
         

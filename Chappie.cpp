@@ -14,6 +14,9 @@
 
 void CHAPPIE::init()
 {
+    FastLED.showColor(TFT_ORANGE, 10);
+    
+    /* Lcd init */
     Lcd.init();
     Lcd.setFont(&fonts::efontCN_12);
 
@@ -38,5 +41,5 @@ void CHAPPIE::init()
     Lcd.printf("Tp init success!\n");
 
 
-
+    FastLED.clear(true);
 }
