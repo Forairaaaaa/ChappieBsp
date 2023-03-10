@@ -37,9 +37,9 @@
 
 
 /* Enable module Buzzer */
-#define EMMA_MODULE_BUZZER              0
+#define EMMA_MODULE_BUZZER              1
 #if EMMA_MODULE_BUZZER
-    #define EMMA_BUZZER_PIN             2
+    #define EMMA_BUZZER_PIN             46
     #define EMMA_BUZZER_MELODY          1
     #define EMMA_BUZZER_MELODY_MSG      1
     #define EMMA_BUZZER_MELODY_MUSIC    1
@@ -73,7 +73,7 @@
 
 /* Enable module Vibrator */
 /* Simple viration motor control with ledc pwm */
-#define EMMA_MODULE_VIBRATOR            1
+#define EMMA_MODULE_VIBRATOR            0
 #if EMMA_MODULE_VIBRATOR
     #define EMMA_VIBRATOR_PIN           46
 #endif
