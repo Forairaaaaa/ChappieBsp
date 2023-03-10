@@ -14,9 +14,11 @@
 
 void CHAPPIE::init()
 {
+    /* Init RGB led */
+    FastLED.addLeds<WS2812, EMMA_RGBLED_PIN, RGB>(RGBLed.leds, EMMA_RGBLED_NUM);
     FastLED.showColor(TFT_ORANGE, 10);
     
-    /* Lcd init */
+    /* Init lcd */
     Lcd.init();
     Lcd.setFont(&fonts::efontCN_12);
 
