@@ -11,7 +11,7 @@
 #pragma once
 #include "EmmaBSP/Emma.h"
 #include "CTP/ChappieCTP.hpp"
-#include "RTC/I2C_BM8563.h"
+#include "Utility/BM8563/I2C_BM8563.h"
 
 
 class CHAPPIE : public EMMA {

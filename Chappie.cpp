@@ -15,8 +15,7 @@
 void CHAPPIE::init()
 {
     /* Init RGB led */
-    FastLED.addLeds<WS2812, EMMA_RGBLED_PIN, RGB>(RGBLed.leds, EMMA_RGBLED_NUM);
-    FastLED.showColor(TFT_ORANGE, 10);
+    FastLED.showColor(CRGB::Orange, 2);
     
     /* Init lcd */
     Lcd.init();
@@ -44,6 +43,9 @@ void CHAPPIE::init()
 
     /* Init RTC */
     Rtc.begin();
+
+
+
 
 
     FastLED.clear(true);
