@@ -10,6 +10,8 @@
  */
 #pragma once
 #include "EmmaBSP/Emma.h"
+#include "CTP/ChappieCTP.hpp"
+
 
 class CHAPPIE : public EMMA {
     private:
@@ -23,7 +25,16 @@ class CHAPPIE : public EMMA {
  \___)_)(_|_/\_(__) (__) (__|____)
 )";
 
+        /* Touch pad driver */
+        CTP Tp;
+
+        /**
+         * @brief Init
+         * 
+         */
         void init();
+
+        
 
 };
 
