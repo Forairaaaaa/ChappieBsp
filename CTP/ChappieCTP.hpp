@@ -31,6 +31,10 @@
 #endif
 #endif
 
+// #define CTP_X_OFFSET            +10
+// #define CTP_Y_OFFSET            -20
+
+
 class CTP {
     private:
         int _x_pos;
@@ -164,6 +168,7 @@ class CTP {
         inline void getPos(int& x_pos, int& y_pos)
         {
             _update_coor();
+
             x_pos = _x_pos;
             y_pos = _y_pos;
         }

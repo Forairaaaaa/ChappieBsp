@@ -28,13 +28,15 @@ void CHAPPIE::init()
     delay(50);
     Lcd.printf(" Project: %s\n", EMMA_PROJECT_NAME);
     delay(50);
-    Lcd.printf("%s", Cowsay("Meow~").c_str());
-    delay(50);
 
     /* Init I2C */
     Wire.begin(5, 4);
 
     /* Init touchpad */
+    Lcd.printf("%s", Cowsay("Pls touch screen to wakeup Tp").c_str());
     Tp.init(&Wire);
+    Lcd.printf("Tp init success!\n");
+
+
 
 }
