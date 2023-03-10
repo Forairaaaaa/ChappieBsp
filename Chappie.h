@@ -12,6 +12,7 @@
 #include "EmmaBSP/Emma.h"
 #include "CTP/ChappieCTP.hpp"
 #include "IMU/ChappieIMU.hpp"
+#include "Power/ChappiePower.hpp"
 #include "Utility/BM8563/I2C_BM8563.h"
 
 
@@ -28,9 +29,13 @@ class CHAPPIE : public EMMA {
 
         ChappieCTP Tp;
 
-        ChappieIMU IMU;
+        ChappieIMU Imu;
+
+        ChappiePower Pow;
 
         I2C_BM8563 Rtc = I2C_BM8563(I2C_BM8563_DEFAULT_ADDRESS, Wire);
+
+
 
 
         void init();

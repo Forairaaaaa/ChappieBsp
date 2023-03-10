@@ -14,6 +14,9 @@
 
 void CHAPPIE::init()
 {
+    /* Init power contrl */
+    Pow.init();
+
     /* Init RGB led */
     FastLED.showColor(CRGB::Orange, 2);
     
@@ -46,7 +49,7 @@ void CHAPPIE::init()
     Rtc.begin();
 
     /* Init IMU */
-    IMU.init();
+    Imu.init();
 
 
     FastLED.clear(true);
