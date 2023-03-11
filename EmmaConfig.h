@@ -37,7 +37,7 @@
 
 
 /* Enable module Buzzer */
-#define EMMA_MODULE_BUZZER              1
+#define EMMA_MODULE_BUZZER              0
 #if EMMA_MODULE_BUZZER
     #define EMMA_BUZZER_PIN             -1
     #define EMMA_BUZZER_MELODY          1

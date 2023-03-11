@@ -12,33 +12,41 @@
 #include "../../EmmaConfig.h"
 #if EMMA_MODULE_VIBRATOR
 #include <Arduino.h>
-
-
+// #include <freertos/task.h>
+// #include <freertos/semphr.h>
 
 class EmmaVibrator {
     private:
-        uint8_t __ctrl_pin;
-        uint8_t __ledc_channel;
-    public:
-        EmmaVibrator(uint8_t ctrlPin, uint8_t ledcChannel = 0)
-        {
-            __ctrl_pin = ctrlPin;
-            __ledc_channel = ledcChannel;
-            ledcSetup(__ledc_channel, 10000, 8);
-            ledcAttachPin(__ctrl_pin, __ledc_channel);
-            ledcWrite(__ledc_channel, 0);
-        }
-        ~EmmaVibrator() { ledcDetachPin(__ctrl_pin); }
+        uint8_t _ctrl_pin;
+        uint8_t _ledc_channel;
+        // TaskHandle_t _task_handler;
+        // SemaphoreHandle_t _semaphore_mutex;
 
-        void start(uint8_t intensity = 255) { ledcWrite(__ledc_channel, intensity); }
-        void stop() { start(0); }
+    public:
+        inline EmmaVibrator(uint8_t ctrlPin, uint8_t ledcChannel = 0)
+        {
+            _ctrl_pin = ctrlPin;
+            _ledc_channel = ledcChannel;
+            // _task_handler = NULL;
+            // _semaphore_mutex = NULL;
+
+            ledcSetup(_ledc_channel, 10000, 8);
+            ledcAttachPin(_ctrl_pin, _ledc_channel);
+            ledcWrite(_ledc_channel, 0);
+        }
+        inline ~EmmaVibrator() { ledcDetachPin(_ctrl_pin); }
+
+        inline void start(uint8_t intensity = 255) { ledcWrite(_ledc_channel, intensity); }
+        inline void stop() { start(0); }
+
         /**
-         * @brief Buzz for a while (blocking)
+         * @brief Buzz for a while (Blocking)
          * 
          * @param ms 
          * @param intensity 
          */
-        void Buzzzzz(uint32_t ms, uint8_t intensity = 255) { start(intensity); delay(ms); stop(); }
+        inline void Buzzzzz(uint32_t ms, uint8_t intensity = 255) { start(intensity); delay(ms); stop(); }
+
 };
 
 

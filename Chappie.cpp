@@ -49,8 +49,12 @@ void CHAPPIE::init()
     Rtc.begin();
 
     /* Init IMU */
-    Imu.init();
+    // Imu.init();
 
-
+    /* Fire up */
+    Speaker.setVolume(100);
+    Speaker.tone(9000, 300);
+    Vibrator.Buzzzzz(300);
+    
     FastLED.clear(true);
 }
