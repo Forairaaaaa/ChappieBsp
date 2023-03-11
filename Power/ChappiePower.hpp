@@ -17,8 +17,8 @@
 
 class ChappiePower {
     private:
-        inline void _enableBatMeasure() { gpio_set_level(GPIO_NUM_18, 1); }
-        inline void _disableBatMeasure() { gpio_set_level(GPIO_NUM_18, 0); }
+        inline void _enableBatMeasure() { gpio_set_level(CHAPPIE_BATM_EN, 1); }
+        inline void _disableBatMeasure() { gpio_set_level(CHAPPIE_BATM_EN, 0); }
 
     public:
         ChappiePower() {}
@@ -26,20 +26,18 @@ class ChappiePower {
 
         inline void init()
         {
-            gpio_reset_pin(GPIO_NUM_9);
-            gpio_reset_pin(GPIO_NUM_8);
-            gpio_reset_pin(GPIO_NUM_18);
-
-            gpio_set_direction(CHAPPIE_PWR_CTRL, GPIO_MODE_OUTPUT_OD);
-            gpio_set_level(CHAPPIE_PWR_CTRL, 1);
+            gpio_reset_pin(CHAPPIE_BATM_ADC);
+            gpio_reset_pin(CHAPPIE_BATM_EN);
 
             gpio_set_direction(CHAPPIE_BATM_EN, GPIO_MODE_OUTPUT);
-            gpio_set_level(CHAPPIE_BATM_EN, 1);
+            _disableBatMeasure();
             
         }
 
         inline void powerOff()
         {
+            gpio_reset_pin(CHAPPIE_PWR_CTRL);
+            gpio_set_direction(CHAPPIE_PWR_CTRL, GPIO_MODE_OUTPUT_OD);
             /* Double click */
             gpio_set_level(CHAPPIE_PWR_CTRL, 0);
             delay(100);
