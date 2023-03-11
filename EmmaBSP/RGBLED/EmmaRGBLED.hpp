@@ -35,9 +35,10 @@ class EmmaRGBLED
             }
 
             // FastLED.addLeds<SK6812, EMMA_RGBLED_PIN, GRB>(leds, EMMA_RGBLED_NUM);
-            FastLED.addLeds<WS2812, EMMA_RGBLED_PIN, RGB>(leds, EMMA_RGBLED_NUM);
+            FastLED.addLeds<WS2812B, EMMA_RGBLED_PIN, GRB>(leds, EMMA_RGBLED_NUM);
             ESP_LOGI(TAG_RGBLED, "success!");
         }
+
         ~EmmaRGBLED() { free(leds); }
 };
 

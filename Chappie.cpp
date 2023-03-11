@@ -18,7 +18,7 @@ void CHAPPIE::init()
     Pow.init();
 
     /* Init RGB led */
-    FastLED.showColor(CRGB::Orange, 2);
+    // FastLED.showColor(CRGB::Orange, 5);
     
     /* Init lcd */
     Lcd.init();
@@ -58,5 +58,5 @@ void CHAPPIE::init()
     Speaker.tone(9000, 300);
     Vibrator.Buzzzzz(300);
     
-    FastLED.clear(true);
+    // FastLED.showColor(CRGB::Black);
 }

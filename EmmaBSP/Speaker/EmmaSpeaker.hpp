@@ -26,6 +26,7 @@ class EmmaSpeaker : public m5::Speaker_Class {
             cfg.pin_bck = EMMA_SPEAKER_BCLK_PIN;
             cfg.pin_ws = EMMA_SPEAKER_LRCLK_PIN;
             cfg.i2s_port = EMMA_SPEAKER_I2S_PORT;
+            cfg.task_priority = 10;
             cfg.sample_rate = 48000;
             config(cfg);
             begin();

@@ -54,7 +54,7 @@ class ChappieLvgl {
 
             /* Create a task to handle lvgl timer */
             _semaphore_mutex = xSemaphoreCreateMutex();
-            xTaskCreate(task_lv_timer_handler, "lvgl", 4096, this, 10, &_task_handler);
+            xTaskCreate(task_lv_timer_handler, "lvgl", 4096, this, 5, &_task_handler);
         }
 
         /**
