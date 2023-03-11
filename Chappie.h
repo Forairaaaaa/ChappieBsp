@@ -13,6 +13,7 @@
 #include "CTP/ChappieCTP.hpp"
 #include "IMU/ChappieIMU.hpp"
 #include "Power/ChappiePower.hpp"
+#include "SD/ChappieSD.hpp"
 #include "Lvgl/ChappieLvgl.hpp"
 #include "Utility/BM8563/I2C_BM8563.h"
 
@@ -31,6 +32,8 @@ class CHAPPIE : public EMMA {
         ChappieCTP Tp;
 
         ChappieIMU Imu;
+
+        ChappieSD Sd;
 
         ChappiePower Pow;
 

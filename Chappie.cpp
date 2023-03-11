@@ -51,6 +51,8 @@ void CHAPPIE::init()
     /* Init IMU */
     // Imu.init();
 
+    Sd.init();
+
     /* Fire up */
     Speaker.setVolume(100);
     Speaker.tone(9000, 300);
