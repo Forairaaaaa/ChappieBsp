@@ -12,6 +12,7 @@
 #include <Arduino.h>
 #include "porting/lv_port_disp.h"
 #include "porting/lv_port_indev.h"
+#include "porting/lv_port_fs.h"
 #include "demos/lv_demos.h"
 
 class ChappieLvgl {
@@ -49,6 +50,7 @@ class ChappieLvgl {
             lv_init();
             lv_port_disp_init(lcd);
             lv_port_indev_init(tp);
+            lv_fs_fatfs_init();
 
             /* Create a task to handle lvgl timer */
             _semaphore_mutex = xSemaphoreCreateMutex();

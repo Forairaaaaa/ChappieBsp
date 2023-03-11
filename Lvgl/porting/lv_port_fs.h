@@ -4,19 +4,20 @@
  */
 
 /*Copy this file as "lv_port_fs.h" and set this value to "1" to enable content*/
-#if 0
+#if 1
 
 #ifndef LV_PORT_FS_TEMPL_H
 #define LV_PORT_FS_TEMPL_H
 
 #ifdef __cplusplus
-extern "C" {
+// extern "C" {
 #endif
 
 /*********************
  *      INCLUDES
  *********************/
-#include "lvgl/lvgl.h"
+// #include "lvgl/lvgl.h"
+#include <lvgl.h>
 
 /*********************
  *      DEFINES
@@ -29,14 +30,15 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-void lv_port_fs_init(void);
+// void lv_port_fs_init(void);
+void lv_fs_fatfs_init(void);
 
 /**********************
  *      MACROS
  **********************/
 
 #ifdef __cplusplus
-} /*extern "C"*/
+// } /*extern "C"*/
 #endif
 
 #endif /*LV_PORT_FS_TEMPL_H*/
