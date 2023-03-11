@@ -13,6 +13,7 @@
 #include "CTP/ChappieCTP.hpp"
 #include "IMU/ChappieIMU.hpp"
 #include "Power/ChappiePower.hpp"
+#include "Lvgl/ChappieLvgl.hpp"
 #include "Utility/BM8563/I2C_BM8563.h"
 
 
@@ -32,6 +33,8 @@ class CHAPPIE : public EMMA {
         ChappieIMU Imu;
 
         ChappiePower Pow;
+
+        ChappieLvgl lvgl;
 
         I2C_BM8563 Rtc = I2C_BM8563(I2C_BM8563_DEFAULT_ADDRESS, Wire);
 

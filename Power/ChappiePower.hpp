@@ -51,15 +51,15 @@ class ChappiePower {
             delay(1000);
         }
 
-        inline double getBatVoltage()
-        {
+        // inline double getBatVoltage()
+        // {
 
-        }
+        // }
 
-        inline uint8_t getBatLevel()
-        {
+        // inline uint8_t getBatLevel()
+        // {
 
-        }
+        // }
 
 };
 
