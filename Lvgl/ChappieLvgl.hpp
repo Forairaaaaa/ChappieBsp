@@ -17,6 +17,7 @@
 
 class ChappieLvgl {
     private:
+        bool _enable;
         TaskHandle_t _task_handler;
         SemaphoreHandle_t _semaphore_mutex;
 
@@ -30,9 +31,8 @@ class ChappieLvgl {
             ChappieLvgl* lvgl = (ChappieLvgl*)param;
             while (1)
             {
-                lvgl->startUpdate();
-                lv_timer_handler();
-                lvgl->stopUpdate();
+                if (lvgl->isEnable())
+                    lv_timer_handler();
                 delay(5);
             }
             vTaskDelete(NULL);
@@ -54,21 +54,52 @@ class ChappieLvgl {
 
             /* Create a task to handle lvgl timer */
             _semaphore_mutex = xSemaphoreCreateMutex();
+            _enable = false;
             xTaskCreate(task_lv_timer_handler, "lvgl", 4096, this, 5, &_task_handler);
         }
 
         /**
-         * @brief Call this before calling lvgl api
+         * @brief Enable lvgl refreshing
          * 
          * @param xTicksToWait 
          */
-        inline void startUpdate(TickType_t xTicksToWait = portMAX_DELAY) { xSemaphoreTake(_semaphore_mutex, xTicksToWait); }
+        inline void enable(TickType_t xTicksToWait = portMAX_DELAY)
+        {
+            if (_enable)
+                return;
+            xSemaphoreTake(_semaphore_mutex, xTicksToWait);
+            _enable = true;
+            xSemaphoreGive(_semaphore_mutex);
+        }
 
         /**
-         * @brief Call this after calling lvgl api
+         * @brief Disable lvgl refreshing, your should calll this before calling lvgl API like lv_lable...
          * 
+         * @param xTicksToWait 
          */
-        inline void stopUpdate() { xSemaphoreGive(_semaphore_mutex); }
+        inline void disable(TickType_t xTicksToWait = portMAX_DELAY)
+        {
+            if (!_enable)
+                return;
+            xSemaphoreTake(_semaphore_mutex, xTicksToWait);
+            _enable = false;
+            xSemaphoreGive(_semaphore_mutex);
+        }
+
+        /**
+         * @brief Is lvgl refreshing
+         * 
+         * @param xTicksToWait 
+         * @return true 
+         * @return false 
+         */
+        inline bool isEnable(TickType_t xTicksToWait = portMAX_DELAY)
+        {
+            xSemaphoreTake(_semaphore_mutex, xTicksToWait);
+            bool ret = _enable;
+            xSemaphoreGive(_semaphore_mutex);
+            return ret;
+        }
 
 };
 
