@@ -31,8 +31,8 @@
 #endif
 #endif
 
-// #define CTP_X_OFFSET            +10
-// #define CTP_Y_OFFSET            -20
+/* Use map for calibration, can solve some dead area problem, but lost precision */
+#define USING_MAP_TO_CALIBRATE  0
 
 
 class ChappieCTP {
@@ -177,6 +177,36 @@ class ChappieCTP {
 
             x_pos = _x_pos;
             y_pos = _y_pos;
+
+            #if USING_MAP_TO_CALIBRATE
+
+                /* Remap the possition value */
+                x_pos = map(_x_pos, 6, 258, 0, 280);
+                y_pos = map(_y_pos, 15, 230, 0, 240);
+
+                #ifdef CTP_HORIZON
+                    if (x_pos > 280)
+                        x_pos = 280;
+                    if (x_pos < 0)
+                        x_pos = 0;
+                    if (y_pos > 240)
+                        y_pos = 240;
+                    if (y_pos < 0)
+                        y_pos = 0;
+                #else
+                #ifdef CTP_PORTRAIT
+                    if (x_pos > 240)
+                        x_pos = 240;
+                    if (x_pos < 0)
+                        x_pos = 0;
+                    if (y_pos > 280)
+                        y_pos = 280;
+                    if (y_pos < 0)
+                        y_pos = 0;
+                #endif
+                #endif           
+
+            #endif
         }
 
         inline void printCoordinate()
