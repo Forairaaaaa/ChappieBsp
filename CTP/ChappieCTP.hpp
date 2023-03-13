@@ -39,6 +39,7 @@ class ChappieCTP {
     private:
         int _x_pos;
         int _y_pos;
+        bool _enable;
 
         /* I2C related */
         TwoWire* _wire;
@@ -96,6 +97,7 @@ class ChappieCTP {
         {
             /* Reset coordinate */
             _reset_coor();
+            _enable = true;
 
             /* Shut down auto sleep */
             // _I2C_write1Byte(0xFE, 0xFF);
@@ -162,6 +164,10 @@ class ChappieCTP {
         inline bool isTouched()
         {
             // return !digitalRead(CTP_INT_PIN);
+
+            if (!_enable)
+                return false;
+
             return _I2C_read8Bit(0x02) ? true : false;
         }
 
@@ -183,5 +189,8 @@ class ChappieCTP {
             // _update_coor();
             printf("X:%03d Y:%03d\n", _x_pos, _y_pos);
         }
+
+        inline void enable() { _enable = true; }
+        inline void disable() { _enable = false; }
 };
 
