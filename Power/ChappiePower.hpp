@@ -17,8 +17,10 @@
 
 class ChappiePower {
     private:
-        inline void _enableBatMeasure() { gpio_set_level(CHAPPIE_BATM_EN, 1); }
-        inline void _disableBatMeasure() { gpio_set_level(CHAPPIE_BATM_EN, 0); }
+        inline void _enableBatMeasure() { digitalWrite(CHAPPIE_BATM_EN, 0); }
+        inline void _disableBatMeasure() { digitalWrite(CHAPPIE_BATM_EN, 1); }
+
+        
 
     public:
         ChappiePower() {}
@@ -29,9 +31,9 @@ class ChappiePower {
             gpio_reset_pin(CHAPPIE_BATM_ADC);
             gpio_reset_pin(CHAPPIE_BATM_EN);
 
-            gpio_set_direction(CHAPPIE_BATM_EN, GPIO_MODE_OUTPUT);
-            _disableBatMeasure();
-            
+            gpio_set_direction(CHAPPIE_BATM_EN, GPIO_MODE_OUTPUT_OD);
+
+            analogReadResolution(12);
         }
 
         inline void powerOff()
@@ -49,15 +51,30 @@ class ChappiePower {
             delay(1000);
         }
 
-        // inline double getBatVoltage()
-        // {
+        inline float readBatVoltage()
+        {
+            /* Calculate the real bat voltage */
+            return ((float)readBatMilliVoltRaw() * 3 / 2000);
+        }
 
-        // }
+        inline uint32_t readBatMilliVoltRaw()
+        {  
+            gpio_set_direction(CHAPPIE_BATM_EN, GPIO_MODE_OUTPUT_OD);
+            gpio_set_level(CHAPPIE_BATM_EN, 0);
+            delay(10);
+            uint32_t ret = analogReadMilliVolts(CHAPPIE_BATM_ADC);
+            gpio_set_level(CHAPPIE_BATM_EN, 1);
+            gpio_reset_pin(CHAPPIE_BATM_EN);
+            gpio_reset_pin(CHAPPIE_BATM_ADC);
+            return ret;
+        }
 
-        // inline uint8_t getBatLevel()
-        // {
-
-        // }
+        inline uint8_t readBatPercentage()
+        {
+            /* Asume 0~100% to be 3.2~4.2V */
+            uint8_t ret = map((readBatMilliVoltRaw() * 3 / 2), 3200, 4100, 0, 100);
+            return ret;
+        }
 
 };
 
