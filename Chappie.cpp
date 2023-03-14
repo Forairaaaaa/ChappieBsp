@@ -50,8 +50,12 @@ void CHAPPIE::init()
 
     /* Init IMU */
     // Imu.init();
-
+    
+    /* Init SD card */
     Sd.init();
+
+    /* Init BMP280 */
+    Env.init();
 
     /* Fire up */
     Speaker.setVolume(100);
