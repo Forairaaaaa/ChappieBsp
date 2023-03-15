@@ -59,7 +59,7 @@ void CHAPPIE::init()
 
     /* Fire up */
     Speaker.setVolume(100);
-    Speaker.tone(9000, 300);
+    // Speaker.tone(9000, 300);
     Vibrator.Buzzzzz(300);
     
     // FastLED.showColor(CRGB::Black);
