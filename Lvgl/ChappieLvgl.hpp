@@ -20,6 +20,7 @@ class ChappieLvgl {
         bool _enable;
         TaskHandle_t _task_handler;
         SemaphoreHandle_t _semaphore_mutex;
+        bool _task_inited;
 
         /**
          * @brief Task to handle lvgl timer
@@ -39,6 +40,8 @@ class ChappieLvgl {
         }
 
     public:
+        inline ChappieLvgl() : _task_inited(false) {}
+
         /**
          * @brief Init lvgl and create a task to handle lv timer
          * 
@@ -53,9 +56,12 @@ class ChappieLvgl {
             lv_fs_fatfs_init();
 
             /* Create a task to handle lvgl timer */
-            _semaphore_mutex = xSemaphoreCreateMutex();
-            _enable = false;
-            xTaskCreate(task_lv_timer_handler, "lvgl", 5000, this, 5, &_task_handler);
+            if (!_task_inited) {
+                _task_inited = true;
+                _semaphore_mutex = xSemaphoreCreateMutex();
+                _enable = false;
+                xTaskCreate(task_lv_timer_handler, "lvgl", 5000, this, 5, &_task_handler);
+            }
         }
 
         /**
