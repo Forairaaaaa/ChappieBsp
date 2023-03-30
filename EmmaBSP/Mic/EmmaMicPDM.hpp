@@ -24,6 +24,8 @@ class EmmaMicPDM : public m5::Mic_Class {
             cfg.pin_ws = EMMA_MICPDM_CLK_PIN;
             cfg.i2s_port = EMMA_MICPDM_I2S_PORT;
             cfg.magnification = 1;
+            cfg.task_priority = 15;
+            cfg.sample_rate = 48000;
             config(cfg);
             begin();
         }

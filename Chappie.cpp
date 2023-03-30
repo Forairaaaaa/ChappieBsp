@@ -30,6 +30,7 @@ void CHAPPIE::init()
         Lcd.printf("%c", c);
         delay(1);
     }
+    // Lcd.printf("%s", Logo);
     // delay(50);
     Lcd.printf("\n ChappieBSP %s :)\n Author: Forairaaaaa\n", EMMA_BSP_VERISON);
     // delay(50);
@@ -60,7 +61,7 @@ void CHAPPIE::init()
     /* Fire up */
     Speaker.setVolume(100);
     // Speaker.tone(9000, 300);
-    Vibrator.Buzzzzz(300);
+    // Vibrator.Buzzzzz(300);
     
     // FastLED.showColor(CRGB::Black);
 }
